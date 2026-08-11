@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: tg-session-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_ID
+        sync: false
+      - key: RENDER_EXTERNAL_URL
+        fromService:
+          type: web
+          name: tg-session-bot
+          property: host
